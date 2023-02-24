@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <button class="btn btn-outline-primary btn-lg" (click)="open(addProduct)">Add Products</button>
+    <br />
+    <br />
+    <br />
+    <table class="table table-striped">
+        <thead>
+          <th>Product Name</th>
+          <th>Product Type</th>
+          <th>Product Category</th>
+          <th>Product Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prod of products;let i=index">
+                <td>{{prod.product_name}}</td>
+                <td>{{prod.product_type}}</td>
+                <td>{{prod.product_category}}</td>
+                <td>{{prod.product_price}}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-success" (click)="open(editProduct)">Edit</button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-outline-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+  </div>
+
+  <!-- Add Product Modal -->
+<ng-template #addProduct let-modal>
+      <div class="modal-header" style="position: none !important;" data-backdrop="false">
+        <h4 class="modal-title">Add Product</h4>
+        <button type="button" class="btn-close btn-outline-dark" aria-label="Close" (click)="modal.dismiss('Cross click')">x</button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <form [formGroup]="productForm">
+                <div class="form-group">
+                <label for="product_name">Product Name</label>
+                <input type="text" formControlName="product_name" placeholder="e.g. Mouse" class="form-control sm" />
+              </div>
+              <div class="form-group">
+                <label for="product_name">Product Type</label>
+                <input type="text" formControlName="product_type" placeholder="e.g. Computer" class="form-control sm" />
+              </div>
+              <div class="form-group">
+                <label for="product_name">Product Category</label>
+                <input type="text" formControlName="product_category" placeholder="e.g. Electronics" class="form-control sm" />
+              </div>
+              <div class="form-group">
+                <label for="product_name">Product Price</label>
+                <input type="text" formControlName="product_price" placeholder="e.g. 799" class="form-control sm" />
+              </div>
+          </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="submit()">Add</button>
+      </div>
+</ng-template>
+
+<!-- Modal Edit Product -->
+<ng-template #editProduct let-modal>
+  <div class="modal-header" style="position: none !important;" data-backdrop="false">
+    <h4 class="modal-title">Edit Product</h4>
+    <button type="button" class="btn-close btn-outline-dark" aria-label="Close" (click)="modal.dismiss('Cross click')">x</button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <form [formGroup]="productForm">
+            <div class="form-group">
+            <label for="product_name">Product Name</label>
+            <input type="text" formControlName="product_name" placeholder="e.g. Mouse" class="form-control sm" />
+          </div>
+          <div class="form-group">
+            <label for="product_name">Product Type</label>
+            <input type="text" formControlName="product_type" placeholder="e.g. Computer" class="form-control sm" />
+          </div>
+          <div class="form-group">
+            <label for="product_name">Product Category</label>
+            <input type="text" formControlName="product_category" placeholder="e.g. Electronics" class="form-control sm" />
+          </div>
+          <div class="form-group">
+            <label for="product_name">Product Price</label>
+            <input type="text" formControlName="product_price" placeholder="e.g. 799" class="form-control sm" />
+          </div>
+      </form>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="updateProduct()">Add</button>
+  </div>
+</ng-template>
